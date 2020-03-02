@@ -1,0 +1,162 @@
+<html>
+<head>
+    <title>JAVASCRIPT</title>
+</head>
+<body>
+    <script>
+        // Добраться до числа 43 и также добраться до 109
+        const first = [ 4, [ 5, 4, 6, [ 5, 1, 109, 3, [ 2, 10, 43, 22, 32 ] ] ] ];
+
+        let num109 = first [1][3][2]
+        let num43 = first [1][3][4][2]
+
+         // Пробежаться через цикл for и если значение меньше 5 то перезаписать его на значение 11 
+         // то есть результат должен быть [ 11, 10, 17, 11, 11 , 11 , 11 ];
+        const zero = [4, 10, 17, 2, 3, 1, 0];
+
+        for (let i = 0; i < zero.length; i++) {
+            if (zero[i] < 5) {
+                zero[i] = 11;
+            }
+        }
+
+        console.log(zero);
+
+
+        // Пробежаться через цикл for и четные елементы перемножить и записать результат в odd и вывести
+        // то есть перемножить в цикле 4 17 3 10 
+        const multiply = [4, 10, 17, 2, 3, 1, 10];
+        let odd = 1;
+
+        for (let i = 0; i < multiply.length; i += 2) {
+            odd *= multiply[i];
+        }
+
+        console.log(odd);
+        console.log(4 * 17 * 3 * 10);
+
+
+        // Вывести только нечетные числа используя цикл: 
+        // - for
+        const sourceArray = [1, 5, 10, 4, 2, 3];
+        const finalArray = [];
+
+        for (let i = 0; sourceArray.length > i; i++) {
+            let num = sourceArray[i];
+            if (num % 2 === 1) {
+                finalArray.push(num);
+            }
+        }
+        console.log(finalArray);
+        console.log("expected: ", [1, 5, 3])
+
+        // - while 
+        let i = 0;
+        while (i < sourceArray.length) {
+            let num = sourceArray[i];
+            if (num % 2 === 1) {
+                console.log("-->", num);
+            }
+            i++;
+        }
+
+        console.log("DONE");
+       
+       
+        // Найти минимальное значение и вывести
+        const third = [10, 2, 4, 43, 5, 3, 19, 23];
+        let min = third[0];
+        for (let i = 1; i < third.length; i++) {
+            const num = third[i];
+            if (num < min) {
+                min = num
+            }
+        }
+
+        console.log(min);
+        console.log("expected", 2);
+         
+        
+        // Вывести все елементы в цикле for в обратном порядке то есть 28 19 14 9 23 43 3 4
+        const fourth = [4, 3, 43, 23, 9, 14, 19, 28];const reverse = [];
+        for (let i = fourth.length - 1; i >= 0; i--) {
+            reverse.push(fourth[i]);
+        }
+
+        console.log(fourth);
+        console.log(reverse);
+        
+        // Найти произведение  всех елементов
+        const fifth = [9, 14, 19, 28];
+        let mul = 1;
+        for (let i = 0; i < fifth.length; i++) {
+            const dig = fifth[i];
+            mul = mul * dig;
+        }
+
+        console.log(mul);
+        console.log("expected: ", 9 * 14 * 19 * 28);
+        
+
+        // Пройтись через цикл for и сложить все числа в массиве и вывести результат!
+        const sixth = [9, 4, 19, 18];
+        let sum = 0;
+        for (let i = 0; i < sixth.length; i++) {
+            const dig = sixth[i];
+            sum += dig;
+        }
+
+        console.log(sum);
+        console.log("expected:", 9 + 4 + 19 + 18);
+        
+        
+        // Пройтись через цикл for и найти среднее арифметическое все елементов
+        // среднее арифметическое - это сумма всех елементов, разделенная на их количество!
+        const seventh = [2, 0, 3, 29, 23, 19];
+        let sum = 0;
+        for (let i = 0; i < seventh.length; i++) {
+            sum += seventh[i];
+        }
+        const avg = sum / seventh.length;
+
+        console.log("avg:", avg);
+        console.log("expected:", 12.6);
+
+        // Записать в массив eighth числа от 5 до 17 через цикл:
+        // - for
+         
+        const eighth = [];
+        for (let i = 5; i <= 17; i++) {
+            eighth.push(i);
+        }
+        // - while
+        let i = 5;
+        while (i <= 17) {
+            eighth.push(i);
+            i++;
+        }
+
+        console.log(eighth);
+        
+        
+        // ADVANCED ЗАДАНИЯ!!!! ТО ЕСТЬ НЕОБЯЗАТЕЛЬНЫЕ!!!!!!!!
+
+
+        // Отсортировать массив по возростанию! и вывести
+        const ninth = [ 1, 2, 18, 3, 38, 41, 0 ];
+
+
+        // Есть строкa в переменной ninth!! Нужно пройтись циклом for и записать в переменную res строку со значением 2a1f3c1b
+        // так как если обратить внимание то в строке 'aafcccb' символ а идет последовательно 2 раза далее f только один символ, символ с последовательно 3 раза
+        // и символ b один раз
+        const tenth = 'aafcccb';
+        let res = '';
+
+        // ЗДЕСЬ ЕЩЕ ТЯЖЕЛЕЙ нужно подсчитать количество одинаковых символов в строке и при этом одинаковые символы не идут последовательно!!
+        // то есть результат должен быть 4a3f4c
+        const eleventh = 'aafcccffbaac';
+        let newRes = '';
+        
+    </script>
+</body>
+</html>

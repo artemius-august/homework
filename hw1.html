@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>JAVASCRIPT</title>
+</head>
+<body>
+    <script>
+		// false потому что && ищет первый false.
+        const first = 10 && 9 && false && 5 && 6;
+		
+        // потому что || ищет первое true и это 9(число).
+        const second = 9 || false || 5 || 6 || 0;
+
+        // потому что тут сравнивается два false мы получаем false.
+        const third = false && 9 || false && 5 && 6;
+    
+        // потому что && вернет первое условие (10 && 9) и последнюю цифру (9) то есть true, так как false не нашёл.
+        const fourth = 10 && 9 || 3 || 5 && 6;
+    
+        // вернет 1, потому что || ищет первое true.
+        const fifth = 1 || 5 && 6 && 4 && 1 && 343;
+
+        // потому что в первом false и true это false && пустая строка, что тоже false а 1 это true а оператор || ищет первое true.
+        const sixth = 17 > 43 && true && '' || 1;
+		
+        // && ищет первое false но его нет, а так как всё везде true, будет true.
+        const seventh = 1 && true && 34 > 17 || 1;
+		
+		// в первом условии будет false а false || ture будет true, оператор && ищет первое false не находит и возвращает последнее true (89) а сравнивая false и true(89) мы получаем true.
+        const eighth = '' || 0 || 3 && 4 && 9 && 89;
+        
+        console.log(first, second, third, fourth, fifth, sixth, seventh, eighth);
+    </script>
+</body>
+</html>
