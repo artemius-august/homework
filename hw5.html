@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <title>JAVASCRIPT</title>
+  </head>
+
+  <body>
+    <script>
+      // ЗАДАНИЯ ДЛЯ РАЗМИНКИ!!!!!!)))
+
+      //1) Есть массив cо строк, взять только те у которых есть символы g и a в подстроке, порядок не важен
+      const arrayOfStrings = ['qe', 'gdag', 'gga', 'gtrxa', 'hghh', 'ga'];
+
+      function getSubStrsWithAandG(strings) {
+        const matchedStrings = [];
+        for (const str of strings) {
+          if (str.indexOf('a') >= 0 || str.indexOf('g') >= 0) {
+            matchedStrings.push(str);
+          }
+        }
+        return matchedStrings;
+      }
+
+      getSubStrsWithAandG(arrayOfStrings);
+
+      // 2) Через цикл создать числа фибоначи! То есть на выходе получаем массив с чисел фибоначи, 15 чисел не больше.
+      // можно попробовать через рекурсию как эдвансед.
+
+      function fibonacci() {
+        const digits = [0, 1, 1];
+        for (let i = 0; i < 13; i++) {
+          let lastIndex = digits.length - 1;
+          digits.push(digits[lastIndex] + digits[lastIndex - 1]);
+        }
+        return digits;
+      }
+
+      fibonacci();
+
+      // 3) Через рекурсию сумируем все числа в массиве
+      const arr = [4, 1, 65, 2, 6, 7, 2, 1, 6];
+
+      function recursiveSum(array, index = 0) {
+        if (index === array.length - 1) return array[index];
+        return recursiveSum(array, index + 1) + array[index];
+      }
+
+      recursiveSum(arr);
+
+      // 4) Написать функцию которая принимает 2 параметра from и to, и будет считать сумму  всех нечетных чисел и потом среднее арифметическое от этой суммы!
+      // Задачу решить 2-мя способами! Цыклами и рекурсией!
+
+      function cycleSumAvg(from, to) {
+        let sum = 0;
+        let oddDigitsCount = 0;
+
+        for (let i = from; i <= to; i++) {
+          if (i % 2 !== 0) {
+            sum += i;
+            oddDigitsCount++;
+          }
+        }
+
+        const avg = sum / oddDigitsCount;
+
+        return {
+          sum,
+          avg,
+        };
+      }
+
+      // 5) Написать поясниние как будет выполнятся в коллстэке следующий код!
+      function a() {
+        return b();
+      }
+
+      function b() {
+        return c();
+      }
+
+      function c() {
+        return d();
+      }
+
+      function d() {
+        return 'HELLO';
+      }
+
+      a();
+
+      // Сначала a() идет на стек вызывая b()
+      // далее b() идет на стек вызывая с()
+      // далее с() идет на стек вызывая d()
+      // d() возвращает сторку 'HELLO' и уходит со стека
+      // c() возвращает строку 'HELLO' и уходит со стека
+      // b() возвращает строку 'HELLO' и уходит со стека
+      // a() возвращает строку 'HELLO' и уходит со стека
+    </script>
+  </body>
+</html>
