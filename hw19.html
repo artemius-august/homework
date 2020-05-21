@@ -1,0 +1,144 @@
+<html>
+  <head>
+    <title>JAVASCRIPT</title>
+  </head>
+
+  <body>
+    <script>
+      // ЗАДАНИЯ ДЛЯ РАЗМИНКИ!!!!!!)))
+
+      //1) Есть две функции конструктор! Нужно c помощью prototype сделать second родителем first!
+      function A(name) {
+        B.call(this, name);
+        this.name = name;
+      }
+
+      function B(lastName) {
+        this.lastName = lastName;
+      }
+
+      A.prototype = Object.create(B.prototype);
+
+      const first = new A('Sergei');
+      const second = new B('Shakhov');
+
+      console.log(first);
+      console.log(second);
+
+      //2) Есть обьекты. Необходимо сделать vasia родителем для petia, а petia для boria.
+      // ТО есть вася отец все отцов
+
+      const vasia = { m: 23 };
+      const petia = { n: 2 };
+      const boria = { q: 2 };
+
+      petia.__proto__ = vasia;
+      boria.__proto__ = petia;
+
+      console.log(vasia, petia, boria);
+
+      //3) Написать класс Product, который принимает три поля цена, название, количество.
+      // Необходимо реализовать два метода, первый сравнивает два продукта и выводит строку
+      // в которой присутствует разница по цене и количеству. Второй метод принимает любое количество продуктов и возвращает общую цену.
+
+      class Product {
+        constructor(price, name, count) {
+          this.price = price;
+          this.name = name;
+          this.count = count;
+        }
+
+        compareWith(product) {
+          return `${this.name} - ${product.name}:\nPrice: ${this.price - product.price}\nCount: ${
+            this.count - product.count
+          }`;
+        }
+
+        static totalPrice(products) {
+          return products.reduce((acc, item) => item.price * item.count + acc, 0);
+        }
+      }
+
+      const product1 = new Product(500, 'RAM', 3);
+      const product2 = new Product(900, 'CPU', 1);
+
+      console.log(product1.compareWith(product2));
+      console.log(Product.totalPrice([product1, product2]));
+
+      // 4) Необходимо написать класс, который принимает следующие поля
+      // name, lastName, age, quantity, salary, position, далее реализовываем методы на получение всех свойств.
+      // , пишем геттер, сеттер и что-там еще).
+
+      class UserProfile {
+        constructor(name, lastName, age, quantity, salary, position) {
+          this._name = name;
+          this._lastName = lastName;
+          this._age = age;
+          this._quantity = quantity;
+          this._salary = salary;
+          this._position = position;
+        }
+
+        // ============ GETTERS ============
+
+        get name() {
+          return this._name;
+        }
+
+        get lastName() {
+          return this._lastName;
+        }
+
+        get age() {
+          return this._age;
+        }
+
+        get quantity() {
+          return this._quantity;
+        }
+
+        get salary() {
+          return this._salary;
+        }
+
+        get position() {
+          return this._position;
+        }
+
+        // ============ GETTERS ============
+
+        set name(value) {
+          this._name = value;
+        }
+
+        set lastName(value) {
+          this._lastName = lastName;
+        }
+
+        set age(value) {
+          this._age = age;
+        }
+
+        set quantity(value) {
+          this._quantity = quantity;
+        }
+
+        set salary(value) {
+          this._salary = salary;
+        }
+
+        set position(value) {
+          this._position = position;
+        }
+      }
+
+      const userProfile = new UserProfile('name', 'lastName', 10, 20, 50000, 'stalker');
+
+      // но если вы дочитали до этого момента то 4-е реализововать не нужно), а нужно сделать следующее.
+      //  встать со стула!....... делаем легенькую разминочку, и начинаем приседать ибо дз проверяться не будет). 20 раз достаточно).
+      // и после этого скидываем мне дз.
+
+      // > Ну и по барабану, я все равно реализовал :)
+    </script>
+  </body>
+</html>

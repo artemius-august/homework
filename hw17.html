@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <title>JAVASCRIPT</title>
+  </head>
+
+  <body>
+    <script>
+      // ЗАДАНИЯ ДЛЯ РАЗМИНКИ!!!!!!)))
+
+      //1) Создать класс функция конструктор которого принимает два параметра position, salary,
+      // также создать одно private поле positions = ['software developer', 'hr manager', 'project manager'], getter(get функция)!
+      // которая смотрит на поле positions, и если в position есть одно из перечисленных то возвращает true иначе false
+
+      class UserInfo {
+        position = '';
+        salary = 0;
+
+        #positions = ['software developer', 'hr manager', 'project manager'];
+
+        constructor(position, salary) {
+          this.position = position;
+          this.salary = salary;
+        }
+
+        get getter() {
+          return this.#positions.indexOf(this.position) >= 0;
+        }
+      }
+
+      const userInfo = new UserInfo('hr manager', 1500);
+      console.log(userInfo, userInfo.getter);
+
+      //2) Есть класс App! Добавить две функции одна из них устанавливает product(создает поле product обьект с полем name, price), вторая функция получает price
+      // и одно статическое свойство yearOfIssue
+
+      // >> две ФУНКЦИИ или два МЕТОДА?!
+
+      class App {
+        static yearOfIssue = 2020;
+
+        constructor() {}
+
+        setProduct(name, price) {
+          this.product = { name, price };
+        }
+
+        getProduct() {
+          return { price: this.product.price, yearOfIssue: App.yearOfIssue };
+        }
+      }
+
+      const app = new App();
+      app.setProduct('brain', 100500);
+      console.log(app, app.getProduct());
+
+      // 3) Пишем свой split и join))!
+
+      function split(str, substr) {
+        const splitArr = [];
+        while (true) {
+          const index = str.indexOf(substr);
+          if (index === -1) {
+            splitArr.push(str);
+            break;
+          }
+          splitArr.push(str.substring(0, index));
+          str = str.substring(index + substr.length, str.length);
+        }
+        return splitArr;
+      }
+
+      function join(arr, substr) {
+        let joinString = '';
+        for (let i = 0; i < arr.length - 1; i++) joinString += `${arr[i]}${substr}`;
+        joinString += arr[arr.length - 1];
+        return joinString;
+      }
+
+      // 4) Ну и на последок перепишем класс в вид самовыз функция которая возвращает функцию-конструктор
+      class NewApp {
+        constructor(object) {
+          this.object = object;
+        }
+        getObject() {
+          return object; // Ошибка?! Нужно ведь `return this.object` !
+        }
+      }
+
+      const NewAppFunc = function () {
+        function NewAppFunc(object) {
+          this.object = object;
+        }
+
+        NewAppFunc.prototype.getObject = function () {
+          return this.object;
+        };
+      };
+    </script>
+  </body>
+</html>

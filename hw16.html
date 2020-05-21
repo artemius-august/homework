@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>JAVASCRIPT</title>
+  </head>
+
+  <body>
+    <script>
+      // ЗАДАНИЯ ДЛЯ РАЗМИНКИ!!!!!!)))
+
+      //1) Есть код ! с помощью async await реализуем правильную последовательность!!
+
+      // setTimeout(() => console.log('1'), 1300);
+      // console.log('2');
+      // console.log('3');
+      // setTimeout(() => console.log('4'), 300);
+      // console.log('5');
+
+      function sleepAsync(ms) {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(), ms);
+        });
+      }
+
+      sleepAsync(1300)
+        .then(() => console.log('1'))
+        .then(() => console.log('2'))
+        .then(() => console.log('3'))
+        .then(() => sleepAsync(300))
+        .then(() => console.log('4'))
+        .then(() => console.log('5'));
+
+      async function runOrderTest() {
+        await sleepAsync(1300);
+        console.log('1');
+        console.log('2');
+        console.log('3');
+        await sleepAsync(300);
+        console.log('4');
+        console.log('5');
+      }
+
+      runOrderTest();
+
+      // 2) Есть роуты!! Делаем через async await то что в предыдущей!только с небольшим усложнением
+      // Добавился третий роут. Результат второго запроса даст обьект в котором будет поле orderList.
+      // В поле orderList будет массив с обьектов, и в каждом обьекте будет поле productId.
+      // Использя  эти productId и 3-й роут, сделать Promise.all и получить массив с продуктов.
+      // https://playwithpromise.herokuapp.com/api/order-review/last - вернет обьект с id такой( 5d4762e02481a600174fb1ae )
+      // после чего используя id делаем другой запрос
+      // https://playwithpromise.herokuapp.com/api/order-review/getid/{id}
+      // https://playwithpromise.herokuapp.com/api/order-system/product/{productId}
+
+      fetch('https://playwithpromise.herokuapp.com/api/order-review/last')
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('/order-review/last', data);
+          return fetch(`https://playwithpromise.herokuapp.com/api/order-review/getid/${data._id}`);
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('/order-review/getid', data);
+          return Promise.all(
+            data.orderList.map(({ productId }) =>
+              fetch(`https://playwithpromise.herokuapp.com/api/order-system/product/${productId}`)
+            )
+          );
+        })
+        .then((responses) => Promise.all(responses.map((res) => res.json())))
+        .then((data) => data.forEach((product) => console.log('/order-system/product', product)));
+    </script>
+  </body>
+</html>
